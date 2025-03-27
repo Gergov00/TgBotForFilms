@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TgFilmsAndSerials", "TgFilmsAndSerials\TgFilmsAndSerials.csproj", "{70CEB4F7-608A-4B8E-AD22-1CE4657A9C94}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{B453AB57-1D81-4193-B661-D0F97B840BFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{2A5A3B3F-9C4F-4764-8226-7A567AC56711}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{70CEB4F7-608A-4B8E-AD22-1CE4657A9C94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70CEB4F7-608A-4B8E-AD22-1CE4657A9C94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70CEB4F7-608A-4B8E-AD22-1CE4657A9C94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B453AB57-1D81-4193-B661-D0F97B840BFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B453AB57-1D81-4193-B661-D0F97B840BFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B453AB57-1D81-4193-B661-D0F97B840BFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B453AB57-1D81-4193-B661-D0F97B840BFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A5A3B3F-9C4F-4764-8226-7A567AC56711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A5A3B3F-9C4F-4764-8226-7A567AC56711}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A5A3B3F-9C4F-4764-8226-7A567AC56711}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A5A3B3F-9C4F-4764-8226-7A567AC56711}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

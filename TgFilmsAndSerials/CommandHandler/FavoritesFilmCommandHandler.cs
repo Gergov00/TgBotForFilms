@@ -6,6 +6,9 @@ namespace TgFilmsAndSerials.CommandHandler;
 
 public class FavoritesFilmCommandHandler : ICommandHandler
 {
+    
+    public string Command => "/favourites";
+
     public async Task HandleAsync(TelegramBotClient bot, CallbackQuery callbackQuery, string args)
     {
         await bot.EditMessageText(

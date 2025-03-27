@@ -6,5 +6,6 @@ namespace TgFilmsAndSerials.CommandHandler;
 
 public interface ICommandHandler
 {
+    string Command { get; }
     Task HandleAsync(TelegramBotClient bot, CallbackQuery callbackQuery, string args);
 }

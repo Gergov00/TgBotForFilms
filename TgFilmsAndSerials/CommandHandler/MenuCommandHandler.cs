@@ -7,6 +7,8 @@ namespace TgFilmsAndSerials.CommandHandler;
 
 public class MenuCommandHandler : ICommandHandler
 {
+    public string Command => "/menu";
+
     public async Task HandleAsync(TelegramBotClient bot, CallbackQuery callbackQuery, string args)
     {
         await bot.EditMessageText(

@@ -6,16 +6,16 @@ namespace TgFilmsAndSerials.CommandHandler;
     
 public class CommandDispatcher
 {
-    private readonly Dictionary<string, ICommandHandler> commandHandlers;
+    private readonly Dictionary<string, ICommandHandler> _handlers;
 
-    public CommandDispatcher(Dictionary<string, ICommandHandler> handlers)
+    public CommandDispatcher(IEnumerable<ICommandHandler> handlers)
     {
-        commandHandlers = handlers;
+        _handlers = handlers.ToDictionary(h => h.Command, h => h, StringComparer.OrdinalIgnoreCase);
     }
 
     public async Task DispatchAsync(string command, string args, TelegramBotClient bot, CallbackQuery callbackQuery)
     {
-        if (commandHandlers.TryGetValue(command, out var handler))
+        if (_handlers.TryGetValue(command, out var handler))
         {
             await handler.HandleAsync(bot, callbackQuery, args);
         }

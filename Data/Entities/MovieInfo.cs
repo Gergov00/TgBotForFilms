@@ -33,7 +33,7 @@ public class MovieInfoSimplified
 public class Genre
 {
     [JsonPropertyName("name")]
-    public string? Name { get; set; }
+    public string Name { get; set; }
 }
 
 public class Country

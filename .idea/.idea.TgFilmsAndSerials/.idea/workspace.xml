@@ -9,18 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b2bef76-55fd-4f25-a202-73d81c7ea51d" name="Changes" comment="111">
-      <change afterPath="$PROJECT_DIR$/Data/Entities/MovieInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Services/Implementations/MovieService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Services/Interfaces/IMovieService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="9b2bef76-55fd-4f25-a202-73d81c7ea51d" name="Changes" comment="Можно выбирать рандомный фильм">
+      <change afterPath="$PROJECT_DIR$/Data/Entities/SearchSettings.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Entities/UserFilter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services/Utils/MovieUrlBuilder.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/FilteredFilmCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/SettingsCommandHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TgFilmsAndSerials/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TgFilmsAndSerials/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials.sln" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/CommandDispatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/CommandDispatcher.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/FavoritesFilmCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/FavoritesFilmCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/ICommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/ICommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/MenuCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/MenuCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Entities/MovieInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Entities/MovieInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Implementations/MovieService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Implementations/MovieService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Interfaces/IMovieService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Interfaces/IMovieService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/RandomFilmCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/RandomFilmCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/Markup/MenuMarkup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/Markup/MenuMarkup.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/TgFilmsAndSerials.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/TgFilmsAndSerials.csproj" afterDir="false" />
     </list>
@@ -61,10 +61,9 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d3a451850004403293b134b9fe18ce3fc8f920/c6/f10eec86/StringComparison.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/669142762fe6d3cf7d37f077c5a6cd58ee415a166197c9fb454faf1921fc6/String.Comparison.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/_C# Projects/TgFilmsAndSerials/TgFilmsAndSerials/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/_C# Projects/TgFilmsAndSerials/TgFilmsAndSerials/Program.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -83,7 +82,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Project.TgFilmsAndSerials.executor": "Debug",
+    ".NET Project.TgFilmsAndSerials.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "XThreadsFramesViewSplitterKey": "0.49425286",
@@ -169,7 +168,7 @@
       <workItem from="1743073847515" duration="10285000" />
       <workItem from="1743085941250" duration="32000" />
       <workItem from="1743085987527" duration="123000" />
-      <workItem from="1743086127778" duration="7401000" />
+      <workItem from="1743086127778" duration="13907000" />
     </task>
     <task id="LOCAL-00001" summary="add">
       <option name="closed" value="true" />
@@ -235,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743086322503</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Можно выбирать рандомный фильм">
+      <option name="closed" value="true" />
+      <created>1743094911665</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1743094911665</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,25 +255,7 @@
     <MESSAGE value="add" />
     <MESSAGE value="123" />
     <MESSAGE value="111" />
-    <option name="LAST_COMMIT_MESSAGE" value="111" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Services/Implementations/MovieService.cs</url>
-          <line>34</line>
-          <properties documentPath="D:\_C# Projects\TgFilmsAndSerials\Services\Implementations\MovieService.cs" containingFunctionPresentation="Method 'GetRandom'">
-            <startOffsets>
-              <option value="1031" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1116" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Можно выбирать рандомный фильм" />
+    <option name="LAST_COMMIT_MESSAGE" value="Можно выбирать рандомный фильм" />
   </component>
 </project>

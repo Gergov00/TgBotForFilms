@@ -25,24 +25,22 @@ Console.WriteLine("MovieApi:ApiKey из конфигурации: " + configurat
 
 var services = new ServiceCollection();
 
-// Регистрируем IConfiguration
 services.AddSingleton<IConfiguration>(configuration);
 
 
-// Регистрируем зависимости
 services.AddHttpClient<IMovieService, MovieService>();
-services.AddSingleton<IMovieService, MovieService>(); // Ваша реализация IMovieService
+services.AddSingleton<IMovieService, MovieService>(); 
 services.AddTransient<ICommandHandler, RandomFilmCommandHandler>();
 services.AddTransient<ICommandHandler, FavoritesFilmCommandHandler>();
 services.AddTransient<ICommandHandler, MenuCommandHandler>();
+services.AddTransient<ICommandHandler, FilteredFilmCommandHandler>();
+services.AddTransient<ICommandHandler, SettingsCommandHandler>();
 
-// CommandDispatcher в своём конструкторе принимает IEnumerable<ICommandHandler>
-// и собирает словарь обработчиков (предполагается, что каждый обработчик реализует свойство Command)
+
 services.AddSingleton<CommandDispatcher>();
 
 var serviceProvider = services.BuildServiceProvider();
 
-// Получаем CommandDispatcher из DI
 var dispatcher = serviceProvider.GetRequiredService<CommandDispatcher>();
 
 var token = Environment.GetEnvironmentVariable("TOKEN") ?? Token.token;
@@ -121,7 +119,16 @@ async Task OnUpdate(Update update)
 
 async Task OnCallbackQuery(CallbackQuery callbackQuery)
 {
-    await dispatcher.DispatchAsync(callbackQuery.Data, "123", bot, callbackQuery);
+    if (callbackQuery.Data.StartsWith("genre:") || callbackQuery.Data.StartsWith("country:")
+                                                || callbackQuery.Data.StartsWith("year:") || callbackQuery.Data.StartsWith("next:")
+                                                || callbackQuery.Data == "apply")
+    {
+        await SettingsCommandHandler.HandleSelectionAsync(bot, callbackQuery, dispatcher);
+    }
+    else
+    {
+        await dispatcher.DispatchAsync(callbackQuery.Data, "", bot, callbackQuery);
+    }
 }
 
 async Task OnPollAnswer(PollAnswer pollAnswer)

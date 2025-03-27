@@ -3,6 +3,9 @@ using System.Text.Json;
 using Data.Entities;
 using Microsoft.Extensions.Configuration;
 using Services.Interfaces;
+using Services.Utils;
+
+
 
 namespace Services.Implementations;
 
@@ -19,9 +22,11 @@ public class MovieService : IMovieService
         _httpClient.DefaultRequestHeaders.Add("X-API-KEY", _apiKey);
     }
     
-    public async Task<MovieInfoSimplified> GetRandom()
+    public async Task<MovieInfoSimplified> GetRandomByFilter(UserFilter filter)
     {
-        var url = $"https://api.kinopoisk.dev/v1.4/movie/random";
+        var baseUrl = $"https://api.kinopoisk.dev/v1.4/movie/random";
+        var url = filter == null ? baseUrl : MovieUrlBuilder.BuildUrl(baseUrl, filter);
+
         var response = await _httpClient.GetAsync(url);
         
         if (response.IsSuccessStatusCode)

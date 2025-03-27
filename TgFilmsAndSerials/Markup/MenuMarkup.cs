@@ -5,9 +5,10 @@ namespace TgFilmsAndSerials.Markup;
 public static class MenuMarkup
 {
     public static InlineKeyboardMarkup GetMainMenuMarkup() =>
-        new InlineKeyboardMarkup(new InlineKeyboardButton[][]
+        new(new[]
         {
-            new [] { InlineKeyboardButton.WithCallbackData("Случайный фильм", "/random") },
-            new [] { InlineKeyboardButton.WithCallbackData("Избраное", "/favourites") }
+            new [] { InlineKeyboardButton.WithCallbackData("🎲 Случайный фильм", "/random") },
+            new [] { InlineKeyboardButton.WithCallbackData("⭐ Избранное", "/favourites") },
+            new [] { InlineKeyboardButton.WithCallbackData("🔍 Фильтр", "/settings") },
         });
 }

@@ -10,5 +10,8 @@ public static class MenuMarkup
             new [] { InlineKeyboardButton.WithCallbackData("🎲 Случайный фильм", "/random") },
             new [] { InlineKeyboardButton.WithCallbackData("⭐ Избранное", "/favourites") },
             new [] { InlineKeyboardButton.WithCallbackData("🔍 Фильтр", "/settings") },
+            new [] { InlineKeyboardButton.WithCallbackData("🔍 Посмотреть фильтр", "/filter") },
+            new [] { InlineKeyboardButton.WithCallbackData("❌ Сбросить фильтр", "/clearfilter") },
+
         });
 }

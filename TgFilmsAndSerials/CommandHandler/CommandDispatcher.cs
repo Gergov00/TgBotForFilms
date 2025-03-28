@@ -13,11 +13,11 @@ public class CommandDispatcher
         _handlers = handlers.ToDictionary(h => h.Command, h => h, StringComparer.OrdinalIgnoreCase);
     }
 
-    public async Task DispatchAsync(string command, string args, TelegramBotClient bot, CallbackQuery callbackQuery)
+    public async Task DispatchAsync(string command, TelegramBotClient bot, CallbackQuery callbackQuery)
     {
         if (_handlers.TryGetValue(command, out var handler))
         {
-            await handler.HandleAsync(bot, callbackQuery, args);
+            await handler.HandleAsync(bot, callbackQuery);
         }
         else
         {

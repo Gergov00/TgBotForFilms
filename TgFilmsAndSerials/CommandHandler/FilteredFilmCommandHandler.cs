@@ -1,52 +1,56 @@
 using Data.Entities;
+using Data.Sorage;
 using Services.Interfaces;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
+using Telegram.Bot.Types.ReplyMarkups;
 using TgFilmsAndSerials.CommandHandler;
 using TgFilmsAndSerials.Markup;
 
 public class FilteredFilmCommandHandler : ICommandHandler
 {
-    private readonly IMovieService _movieService;
+    private readonly UserFilterStorage _filter;
 
-    public FilteredFilmCommandHandler(IMovieService movieService)
+    public FilteredFilmCommandHandler(UserFilterStorage filter)
     {
-        _movieService = movieService;
+        _filter = filter;
     }
 
     public string Command => "/filter";
 
-    public async Task HandleAsync(TelegramBotClient bot, CallbackQuery callbackQuery, string args)
+    public async Task HandleAsync(TelegramBotClient bot, CallbackQuery callbackQuery)
     {
-        var parts = args.Split('|');
-        var filter = new UserFilter
-        {
-            Genres = parts[0].Split(',', StringSplitOptions.RemoveEmptyEntries).ToList(),
-            Countries = parts[1].Split(',', StringSplitOptions.RemoveEmptyEntries).ToList(),
-            Year = int.TryParse(parts[2], out var y) ? y : null
-        };
+        var text = "Нет фильтра";
 
-        var movie = await _movieService.GetRandomByFilter(filter);
-        if (movie == null)
+        if (_filter.Filters.TryGetValue(callbackQuery.From.Id, out UserFilter filter))
         {
-            await bot.SendTextMessageAsync(callbackQuery.Message.Chat.Id, "Фильм не найден по вашему фильтру.");
-            return;
+
+
+
+            var years = filter.YearFrom == filter.YearTo
+                ? $"{filter.YearFrom}"
+                : $"{filter.YearFrom} - {filter.YearTo}";
+
+            text = $"<b>Жанры:</b> {string.Join(", ", filter.Genres.Select(g => g))}\n" +
+                       $"<b>Страны:</b> {string.Join(", ", filter.Countries.Select(c => c))}\n" +
+                       $"<b>Год:</b> {years}";
+
         }
+        
 
-        var text = $"<b>{movie.DisplayName}</b>\n" +
-                   $"<i>{movie.Description ?? "Описание отсутствует"}</i>\n\n" +
-                   $"<b>Год:</b> {movie.Year}\n" +
-                   $"<b>Жанры:</b> {string.Join(", ", movie.Genres.Select(g => g.Name))}\n" +
-                   $"<b>Страны:</b> {string.Join(", ", movie.Countries.Select(c => c.Name))}";
-
-        var media = new InputMediaPhoto(movie.Poster?.PreviewUrl ?? "https://defaultimage.jpg")
-        {
-            Caption = text,
-            ParseMode = ParseMode.Html
-        };
-
-        await bot.EditMessageMediaAsync(callbackQuery.Message.Chat.Id, callbackQuery.Message.MessageId, media,
-            replyMarkup: MenuMarkup.GetMainMenuMarkup());
+        await bot.EditMessageTextAsync(
+            parseMode: ParseMode.Html,
+            chatId: callbackQuery.Message.Chat.Id, 
+            messageId: callbackQuery.Message.MessageId, 
+            text: text,
+            replyMarkup: new InlineKeyboardMarkup(
+                new InlineKeyboardButton[]
+                {
+                    InlineKeyboardButton.WithCallbackData("Меню", "/menu"),
+                }
+            ));
     }
+
+
 }

@@ -25,7 +25,7 @@ public class MovieService : IMovieService
     public async Task<MovieInfoSimplified> GetRandomByFilter(UserFilter filter)
     {
         var baseUrl = $"https://api.kinopoisk.dev/v1.4/movie/random";
-        var url = filter == null ? baseUrl : MovieUrlBuilder.BuildUrl(baseUrl, filter);
+        var url = filter == null ?  baseUrl + "?year=2000-2024" : MovieUrlBuilder.BuildUrl(baseUrl, filter);
 
         var response = await _httpClient.GetAsync(url);
         

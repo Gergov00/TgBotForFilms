@@ -9,20 +9,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b2bef76-55fd-4f25-a202-73d81c7ea51d" name="Changes" comment="Можно выбирать рандомный фильм">
-      <change afterPath="$PROJECT_DIR$/Data/Entities/SearchSettings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Entities/UserFilter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Services/Utils/MovieUrlBuilder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/FilteredFilmCommandHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/SettingsCommandHandler.cs" afterDir="false" />
+    <list default="true" id="9b2bef76-55fd-4f25-a202-73d81c7ea51d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Data/Storage/UserFilterStorage.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/ClearFilterCommandHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TgFilmsAndSerials/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TgFilmsAndSerials/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Entities/MovieInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Entities/MovieInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Entities/UserFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Entities/UserFilter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Services/Implementations/MovieService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Implementations/MovieService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/Interfaces/IMovieService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Interfaces/IMovieService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Utils/MovieUrlBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Utils/MovieUrlBuilder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/CommandDispatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/CommandDispatcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/FavoritesFilmCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/FavoritesFilmCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/FilteredFilmCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/FilteredFilmCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/ICommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/ICommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/MenuCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/MenuCommandHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/RandomFilmCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/RandomFilmCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/SettingsCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/SettingsCommandHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/Markup/MenuMarkup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/Markup/MenuMarkup.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/TgFilmsAndSerials.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/TgFilmsAndSerials.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,26 +82,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Project.TgFilmsAndSerials.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "XThreadsFramesViewSplitterKey": "0.49425286",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Project.TgFilmsAndSerials.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.49425286&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "ChangesTree.GroupingKeys": [
-      "directory"
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Project.TgFilmsAndSerials">
     <configuration name="Data" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -168,7 +170,8 @@
       <workItem from="1743073847515" duration="10285000" />
       <workItem from="1743085941250" duration="32000" />
       <workItem from="1743085987527" duration="123000" />
-      <workItem from="1743086127778" duration="13907000" />
+      <workItem from="1743086127778" duration="15039000" />
+      <workItem from="1743170974104" duration="6241000" />
     </task>
     <task id="LOCAL-00001" summary="add">
       <option name="closed" value="true" />
@@ -242,7 +245,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743094911665</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="некая подобие фильтра">
+      <option name="closed" value="true" />
+      <created>1743101392867</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1743101392867</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,6 +267,7 @@
     <MESSAGE value="123" />
     <MESSAGE value="111" />
     <MESSAGE value="Можно выбирать рандомный фильм" />
-    <option name="LAST_COMMIT_MESSAGE" value="Можно выбирать рандомный фильм" />
+    <MESSAGE value="некая подобие фильтра" />
+    <option name="LAST_COMMIT_MESSAGE" value="некая подобие фильтра" />
   </component>
 </project>

@@ -1,3 +1,5 @@
+using Data.Entities;
+using Data.Sorage;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
@@ -9,17 +11,22 @@ namespace TgFilmsAndSerials.CommandHandler;
 public class RandomFilmCommandHandler: ICommandHandler
 {
     private readonly IMovieService _movieService;
-    
-    public RandomFilmCommandHandler(IMovieService movieService)
+    private readonly UserFilterStorage _filter;
+    public RandomFilmCommandHandler(IMovieService movieService, UserFilterStorage filter)
     {
         _movieService = movieService;
+        _filter = filter;
     }
     public string Command => "/random";
 
-    public async Task HandleAsync(TelegramBotClient bot, CallbackQuery callbackQuery, string args)
+    public async Task HandleAsync(TelegramBotClient bot, CallbackQuery callbackQuery)
     {
-        var movie = await _movieService.GetRandomByFilter(null);
-        var description = movie.Description != null ? movie.Description : "Отсутствует";
+        if (!_filter.Filters.TryGetValue(callbackQuery.From.Id, out UserFilter userFilter))
+        {
+            userFilter = null;
+        }
+        var movie = await _movieService.GetRandomByFilter(userFilter);
+        
         string text = $"<b>{movie.DisplayName}</b>\n" +
                       $"<i>{movie.Description}</i>\n\n" +
                       $"<b>Год выпуска:</b> {movie.Year}\n" +

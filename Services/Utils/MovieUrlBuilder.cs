@@ -12,10 +12,12 @@ public static class MovieUrlBuilder
 
         filter.Genres.ForEach(g => query.Add("genres.name", g));
         filter.Countries.ForEach(c => query.Add("countries.name", c));
-        if (filter.Year.HasValue)
-            query.Add("year", filter.Year.Value.ToString());
+
+        if (filter.YearFrom.HasValue)
+            query.Add("year", $"{filter.YearFrom}-{filter.YearTo ?? filter.YearFrom}");
 
         uriBuilder.Query = query.ToString();
         return uriBuilder.ToString();
     }
+
 }

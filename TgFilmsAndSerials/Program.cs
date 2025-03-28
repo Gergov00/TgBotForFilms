@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Data.Entities;
+using Data.Sorage;
+using Microsoft.Extensions.Configuration;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
@@ -35,9 +37,13 @@ services.AddTransient<ICommandHandler, FavoritesFilmCommandHandler>();
 services.AddTransient<ICommandHandler, MenuCommandHandler>();
 services.AddTransient<ICommandHandler, FilteredFilmCommandHandler>();
 services.AddTransient<ICommandHandler, SettingsCommandHandler>();
-
-
+services.AddTransient<ICommandHandler, ClearFilterCommandHandler>();
+services.AddTransient<SettingsCommandHandler>();
+services.AddSingleton<UserFilterStorage>();
 services.AddSingleton<CommandDispatcher>();
+
+
+
 
 var serviceProvider = services.BuildServiceProvider();
 
@@ -119,17 +125,23 @@ async Task OnUpdate(Update update)
 
 async Task OnCallbackQuery(CallbackQuery callbackQuery)
 {
-    if (callbackQuery.Data.StartsWith("genre:") || callbackQuery.Data.StartsWith("country:")
-                                                || callbackQuery.Data.StartsWith("year:") || callbackQuery.Data.StartsWith("next:")
-                                                || callbackQuery.Data == "apply")
+    var data = callbackQuery.Data;
+
+    // Получаем обработчик через DI
+    var settingsHandler = serviceProvider.GetRequiredService<SettingsCommandHandler>();
+
+    if (data.StartsWith("genre:") || data.StartsWith("country:")
+                                  || data.StartsWith("year_from:") || data.StartsWith("year_to") || data.StartsWith("next:")
+                                  || data == "apply" || data == "reset")
     {
-        await SettingsCommandHandler.HandleSelectionAsync(bot, callbackQuery, dispatcher);
+        await settingsHandler.HandleSelectionAsync(bot, callbackQuery);
     }
     else
     {
-        await dispatcher.DispatchAsync(callbackQuery.Data, "", bot, callbackQuery);
+        await dispatcher.DispatchAsync(data, bot, callbackQuery);
     }
 }
+
 
 async Task OnPollAnswer(PollAnswer pollAnswer)
 {

@@ -9,11 +9,10 @@ public class MenuCommandHandler : ICommandHandler
 {
     public string Command => "/menu";
 
-    public async Task HandleAsync(TelegramBotClient bot, CallbackQuery callbackQuery, string args)
+    public async Task HandleAsync(TelegramBotClient bot, CallbackQuery callbackQuery)
     {
-        await bot.EditMessageText(
+        await bot.SendMessage(
             chatId: callbackQuery.Message.Chat,
-            messageId: callbackQuery.Message.Id,
             text: "Меню",
             replyMarkup: MenuMarkup.GetMainMenuMarkup());
     }

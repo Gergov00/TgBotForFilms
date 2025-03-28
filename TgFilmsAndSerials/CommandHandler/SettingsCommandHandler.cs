@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
-
+using TgFilmsAndSerials;
 
 
 
@@ -14,7 +14,6 @@ public class SettingsCommandHandler : ICommandHandler
 {
     private readonly UserFilterStorage _filterStorage;
     private readonly IServiceProvider _serviceProvider;
-
     public SettingsCommandHandler(UserFilterStorage filterStorage, IServiceProvider serviceProvider)
     {
         _filterStorage = filterStorage;
@@ -23,7 +22,7 @@ public class SettingsCommandHandler : ICommandHandler
 
     public string Command => "/settings";
 
-    public async Task HandleAsync(TelegramBotClient bot, CallbackQuery callbackQuery)
+    public async Task HandleAsync(string? args, TelegramBotClient bot, CallbackQuery? callbackQuery)
     {
         _filterStorage.Filters[callbackQuery.From.Id] = new UserFilter();
 
@@ -146,7 +145,7 @@ public class SettingsCommandHandler : ICommandHandler
             //var args = $"{string.Join(",", filter.Genres)}|{string.Join(",", filter.Countries)}|{filter.Year}";
 
             var dispatcher = _serviceProvider.GetRequiredService<CommandDispatcher>();
-            await dispatcher.DispatchAsync("/random", bot, query);
+            await dispatcher.DispatchAsync("/random", bot, query, null);
         }
         else if (query.Data == "reset")
         {

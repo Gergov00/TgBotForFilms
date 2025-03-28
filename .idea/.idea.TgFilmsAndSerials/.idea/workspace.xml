@@ -9,17 +9,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b2bef76-55fd-4f25-a202-73d81c7ea51d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Data/Storage/UserFilterStorage.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/ClearFilterCommandHandler.cs" afterDir="false" />
+    <list default="true" id="9b2bef76-55fd-4f25-a202-73d81c7ea51d" name="Changes" comment="реализован фильтр">
+      <change afterPath="$PROJECT_DIR$/Data/Entities/MovieSearchResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Storage/StateSorage.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/SearchCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/ShowMovieCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TgFilmsAndSerials/Markup/MovieMarkup.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TgFilmsAndSerials/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TgFilmsAndSerials/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Entities/UserFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Entities/UserFilter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Entities/MovieInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Entities/MovieInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Services/Implementations/MovieService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Implementations/MovieService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/Utils/MovieUrlBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Utils/MovieUrlBuilder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Interfaces/IMovieService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Interfaces/IMovieService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/ClearFilterCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/ClearFilterCommandHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/CommandDispatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/CommandDispatcher.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/FavoritesFilmCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/FavoritesFilmCommandHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/FilteredFilmCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/FilteredFilmCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/ICommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/ICommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/ICommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/Interface/ICommandHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/MenuCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/MenuCommandHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/RandomFilmCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/RandomFilmCommandHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/SettingsCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/SettingsCommandHandler.cs" afterDir="false" />
@@ -63,9 +68,12 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d3a451850004403293b134b9fe18ce3fc8f920/c6/f10eec86/StringComparison.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4a5f6c3759f4b5f7f7f96e1bde48f39bb47581ae45d9e295664f11f86abc2e/HttpUtility.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/669142762fe6d3cf7d37f077c5a6cd58ee415a166197c9fb454faf1921fc6/String.Comparison.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/67ebf210a4bac0747df5febc8332ccaba90acb21287798fde37a06d8eb942b/Encoding.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b4f8b29071cfcf73e927671b936ba53110f1b613a1cc9bef4fc4f07dd0fbe9/Exception.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d9408fee346e9af0cf15a9156671a354e9cf19f9b1b38299a6ac9531aa181/CallbackQuery.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -82,26 +90,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Project.TgFilmsAndSerials.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.49425286&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Project.TgFilmsAndSerials.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "XThreadsFramesViewSplitterKey": "0.49425286",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Project.TgFilmsAndSerials">
     <configuration name="Data" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -171,7 +179,7 @@
       <workItem from="1743085941250" duration="32000" />
       <workItem from="1743085987527" duration="123000" />
       <workItem from="1743086127778" duration="15039000" />
-      <workItem from="1743170974104" duration="6241000" />
+      <workItem from="1743170974104" duration="16777000" />
     </task>
     <task id="LOCAL-00001" summary="add">
       <option name="closed" value="true" />
@@ -253,7 +261,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743101392867</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="реализован фильтр">
+      <option name="closed" value="true" />
+      <created>1743180191407</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1743180191407</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,6 +284,39 @@
     <MESSAGE value="111" />
     <MESSAGE value="Можно выбирать рандомный фильм" />
     <MESSAGE value="некая подобие фильтра" />
-    <option name="LAST_COMMIT_MESSAGE" value="некая подобие фильтра" />
+    <MESSAGE value="реализован фильтр" />
+    <option name="LAST_COMMIT_MESSAGE" value="реализован фильтр" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/ShowMovieCommandHandler.cs</url>
+          <line>44</line>
+          <properties documentPath="D:\_C# Projects\TgFilmsAndSerials\TgFilmsAndSerials\CommandHandler\ShowMovieCommandHandler.cs" containingFunctionPresentation="Method 'HandleAsync'">
+            <startOffsets>
+              <option value="1352" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1399" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/TgFilmsAndSerials/CommandHandler/ShowMovieCommandHandler.cs</url>
+          <line>24</line>
+          <properties documentPath="D:\_C# Projects\TgFilmsAndSerials\TgFilmsAndSerials\CommandHandler\ShowMovieCommandHandler.cs" containingFunctionPresentation="Method 'HandleAsync'">
+            <startOffsets>
+              <option value="708" />
+            </startOffsets>
+            <endOffsets>
+              <option value="709" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

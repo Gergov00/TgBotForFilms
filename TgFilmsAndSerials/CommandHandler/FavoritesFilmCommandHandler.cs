@@ -9,7 +9,8 @@ public class FavoritesFilmCommandHandler : ICommandHandler
     
     public string Command => "/favourites";
 
-    public async Task HandleAsync(TelegramBotClient bot, CallbackQuery callbackQuery)
+    public async Task HandleAsync(string? args, TelegramBotClient bot, CallbackQuery? callbackQuery)
+
     {
         await bot.EditMessageText(
             chatId: callbackQuery.Message.Chat,

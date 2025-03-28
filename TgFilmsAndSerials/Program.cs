@@ -12,9 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Services.Implementations;
 using Services.Interfaces;
 
-Console.WriteLine("Рабочая директория: " + Directory.GetCurrentDirectory());
-Console.WriteLine("Путь к сборке: " + AppContext.BaseDirectory);
-
 
 var configuration = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
@@ -38,14 +35,18 @@ services.AddTransient<ICommandHandler, MenuCommandHandler>();
 services.AddTransient<ICommandHandler, FilteredFilmCommandHandler>();
 services.AddTransient<ICommandHandler, SettingsCommandHandler>();
 services.AddTransient<ICommandHandler, ClearFilterCommandHandler>();
+services.AddTransient<ICommandHandler, SearchCommandHandler>();
+services.AddTransient<ICommandHandler, ShowMovieCommandHandler>();
 services.AddTransient<SettingsCommandHandler>();
 services.AddSingleton<UserFilterStorage>();
 services.AddSingleton<CommandDispatcher>();
-
+services.AddSingleton<StateSorage>();
 
 
 
 var serviceProvider = services.BuildServiceProvider();
+
+var stateStorage = serviceProvider.GetRequiredService<StateSorage>();
 
 var dispatcher = serviceProvider.GetRequiredService<CommandDispatcher>();
 
@@ -92,6 +93,10 @@ async Task OnMessage(Message msg, UpdateType type)
         }
         await OnCommand(command, text[space..].TrimStart(), msg);
     }
+    else if (stateStorage.State[msg.From.Id] == "/search")
+    {
+        dispatcher.DispatchAsync("/showmovie", bot, msg, msg.Text);
+    }
     else
     {
         await bot.SendMessage(msg.Chat, "Введите /start, чтобы бот заработал");
@@ -126,7 +131,7 @@ async Task OnUpdate(Update update)
 async Task OnCallbackQuery(CallbackQuery callbackQuery)
 {
     var data = callbackQuery.Data;
-
+    
     // Получаем обработчик через DI
     var settingsHandler = serviceProvider.GetRequiredService<SettingsCommandHandler>();
 
@@ -136,15 +141,16 @@ async Task OnCallbackQuery(CallbackQuery callbackQuery)
     {
         await settingsHandler.HandleSelectionAsync(bot, callbackQuery);
     }
+    else if (data.StartsWith("movie_id:"))
+    {
+        await dispatcher.DispatchAsync("/showmovie", bot, callbackQuery, null);
+    }
     else
     {
-        await dispatcher.DispatchAsync(data, bot, callbackQuery);
+        await dispatcher.DispatchAsync(data, bot, callbackQuery, null);
     }
+    
+    stateStorage.State[callbackQuery.From.Id] = callbackQuery.Data;
+    Console.WriteLine(stateStorage.State[callbackQuery.From.Id]);
 }
 
-
-async Task OnPollAnswer(PollAnswer pollAnswer)
-{
-    if (pollAnswer.User != null)
-        await bot.SendMessage(pollAnswer.User.Id, $"You voted for option(s) id [{string.Join(',', pollAnswer.OptionIds)}]");
-}

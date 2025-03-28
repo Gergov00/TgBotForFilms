@@ -12,15 +12,17 @@ public class RandomFilmCommandHandler: ICommandHandler
 {
     private readonly IMovieService _movieService;
     private readonly UserFilterStorage _filter;
-    public RandomFilmCommandHandler(IMovieService movieService, UserFilterStorage filter)
+    public RandomFilmCommandHandler(IMovieService movieService, UserFilterStorage filter, StateSorage stateSorage)
     {
         _movieService = movieService;
         _filter = filter;
     }
     public string Command => "/random";
 
-    public async Task HandleAsync(TelegramBotClient bot, CallbackQuery callbackQuery)
+    public async Task HandleAsync(string? args, TelegramBotClient bot, CallbackQuery? callbackQuery)
+
     {
+
         if (!_filter.Filters.TryGetValue(callbackQuery.From.Id, out UserFilter userFilter))
         {
             userFilter = null;

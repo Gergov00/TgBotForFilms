@@ -19,7 +19,8 @@ public class FilteredFilmCommandHandler : ICommandHandler
 
     public string Command => "/filter";
 
-    public async Task HandleAsync(TelegramBotClient bot, CallbackQuery callbackQuery)
+    public async Task HandleAsync(string? args, TelegramBotClient bot, CallbackQuery? callbackQuery)
+
     {
         var text = "Нет фильтра";
 

@@ -18,7 +18,8 @@ namespace TgFilmsAndSerials.CommandHandler;
             _filterStorage = filterStorage;
         }
 
-        public async Task HandleAsync(TelegramBotClient bot, CallbackQuery callbackQuery)
+        public async Task HandleAsync(string? args, TelegramBotClient bot, CallbackQuery? callbackQuery)
+
         {
             _filterStorage.Filters.Remove(callbackQuery.From.Id);
             await bot.AnswerCallbackQueryAsync(callbackQuery.Id, "Фильтр сброшен!");
